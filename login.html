@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Sign Up Form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />		
+	<link rel="stylesheet" type="text/css" href="style/css/sign-up-style.css">
+</head>
+<body>
+	<div id="login" >
+		<div class="title">
+			<h2>Đăng nhập</h2>
+		</div>
+		<div class="myform" style="display: block;">
+			<form action="" enctype="multipart/form-data" id="my-form">
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="username">Tài khoản:</label><span class="maudo">*</span>
+						<input type="text" id="username" class="form-control" />
+						<div class="error" id="user-err"></div>
+					</div>
+					<!-- <div class="error" id="user-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="password">Mật khẩu:</label><span class="maudo">*</span>
+						<input type="password" id="password" class="form-control" />
+						<div class="error" id="pass-err"></div>
+					</div>
+					<!-- <div class="error" id="pass-err"></div> -->
+				</div>
+				<div class="row"></div>
+				<div class="col_full nobottommargin"> 
+					<button type="submit" id="login-btn" class="button button-3d button-black nomargin">Đăng nhập</button>
+					<ul style="float: right;margin-left: 100px;">
+						<li class="right" style="font-size: 18px;"><a href="#" style="font-size: 0.7em; color: blue;text-decoration: none !important;">Quên mật khẩu</a>
+						</li>
+						<li class="right" style="font-size: 18px;"><a href="index.html" style="font-size: 0.7em; color: blue;text-decoration: none !important;">Người dùng mới? Đăng ký tài khoản</a>
+						</li>
+					</ul>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"> </script> 
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="style/js/jquery-2.2.3.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var url = 'http://localhost:3000/users';
+		function onError(err) {
+			console.log(err);
+		}
+
+		var loginBtn = document.getElementById('login-btn');
+		loginBtn.addEventListener('click',getInfo);
+		function getInfo(event) {
+			event.preventDefault();
+			var username = document.getElementById('username');
+			var password = document.getElementById('password');
+			var user_err = document.getElementById('user-err');
+			var pass_err = document.getElementById('pass-err');
+
+			var row = document.getElementsByClassName('row')[2];
+			var personLogin = {};
+			if(_.isEmpty(username.value)){
+				username.value = '';
+				user_err.innerHTML = '<p>Tài khoản không được để trống !</p>';
+			}else if(username.value.length < 6){
+				username.value = '';
+				user_err.innerHTML = '<p>Tài khoản dài tối thiểu 6 kí tự</p>';
+			}else{
+				personLogin.username = username.value;
+				user_err.innerHTML='';
+			}
+
+			if(_.isEmpty(password.value)){
+				password.value = '';
+				pass_err.innerHTML = '<p>Mật khẩu không được để trống !</p>';
+			}else if(password.value.length < 6){
+				password.value = '';
+				pass_err.innerHTML = '<p>Mật khẩu dài tối thiểu 6 kí tự</p>';
+			}else{
+				personLogin.password = password.value;
+				pass_err.innerHTML='';
+			}
+			if(username.value != '' && password.value != ''){
+				axios.get(url).then(function (res) {
+					var users = res.data;
+					var foundLogin = users.find(function (user) {
+						if(personLogin.username === user.username && personLogin.password === user.password){
+							console.log('Id:'+user.id+', '+user.username+' is logged in !');
+							document.getElementById('my-form').reset();
+							return;
+						}
+						else {
+							row.innerHTML = '<p style="color:red;">Tài khoản hoặc mật khẩu không chính xác</p>';
+						}
+					});
+					return foundLogin;
+				}).catch(onError);
+			}
+			
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Sign Up Form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />		
+	<link rel="stylesheet" type="text/css" href="style/css/sign-up-style.css">
+</head>
+<body>
+	<div id="register" style="max-width: 550px;">
+		<div class="title">
+			<h2>Đăng ký tài khoản</h2>
+		</div>
+		<div class="myform" style="display: block;">
+			<form action="" enctype="multipart/form-data" id="my-form">
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="username">Tên đăng nhập:</label><span class="maudo">*</span>
+						<input type="text" id="username" placeholder="Tên đăng nhập" class="form-control" />
+						<div class="error" id="user-err"></div>
+					</div>
+					<!-- <div class="error" id="user-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="password">Mật khẩu:</label><span class="maudo">*</span>
+						<input type="password" id="password" placeholder="Mật khẩu" class="form-control" />
+						<div class="error" id="pass-err"></div>
+					</div>
+					<!-- <div class="error" id="pass-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="re-password">Nhập lại mật khẩu:</label><span class="maudo">*</span>
+						<input type="password" id="re-password" placeholder="Nhập lại mật khẩu" class="form-control" />
+						<div class="error" id="re-pass-err"></div>
+					</div>
+					<!-- <div class="error" id="re-pass-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="fullname">Họ tên:</label><span class="maudo">*</span>
+						<input type="text" id="fullname" placeholder="Họ tên" class="form-control" />
+						<div class="error" id="name-err"></div>
+					</div>
+					<!-- <div class="error" id="name-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="email">Email:</label><span class="maudo">*</span>
+						<input type="email" id="email" placeholder="Nhập email" class="form-control" />
+						<div class="error" id="email-err"></div>
+					</div>
+					<!-- <div class="error" id="email-err"></div> -->
+				</div>
+				<div class="row form-row">
+					<div class="form-group">
+						<label for="phone">Số điện thoại:</label><span class="maudo">*</span>
+						<input type="text" id="phone" placeholder="Số điện thoại" class="form-control" />
+						<div class="error" id="phone-err"></div>
+					</div>
+					<!-- <div class="error" id="phone-err"></div> -->
+				</div>
+				<div class="col_full nobottommargin">
+					<button type="submit" id="sign-up-btn" class="button button-3d button-black nomargin" >Đăng ký</button>
+					<!-- <ul> -->
+						<li class="right" style="font-size: 18px;">Nếu đã có tài khoản, hãy <a href="login.html" style="font-size: 19px; color: #0f9ed8;text-decoration: none !important;">Đăng nhập</a>
+						</li>
+					<!-- </ul> -->
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"> </script> 
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="style/js/jquery-2.2.3.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="style/js/myscript.js">
+
+	</script>
+</body>
+</html>
